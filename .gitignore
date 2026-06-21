@@ -1,0 +1,11 @@
+node_modules
+dist
+.vite
+.env
+server\data\certificates.db
+server\data\certificates.db-journal
+server\data\store.json
+server\storage\logos\*
+server\storage\signatures\*
+!server\storage\logos\.gitkeep
+!server\storage\signatures\.gitkeep

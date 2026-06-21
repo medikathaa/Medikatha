@@ -1,0 +1,33 @@
+{
+  "name": "medikatha-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:client": "vite --config vite.config.js",
+    "dev:server": "node --watch server/index.js",
+    "build": "vite build --config vite.config.js",
+    "typecheck": "tsc --noEmit",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "framer-motion": "^11.18.2",
+    "pg": "^8.16.3",
+    "qrcode": "^1.5.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.0",
+    "concurrently": "^9.2.1",
+    "typescript": "^6.0.3",
+    "vite": "^7.1.7"
+  }
+}

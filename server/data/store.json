@@ -1,0 +1,49 @@
+{
+  "counters": {
+    "asset": 4,
+    "certificate": 0
+  },
+  "assets": [
+    {
+      "id": 1,
+      "kind": "logo",
+      "name": "Ribbon Monogram",
+      "file_name": "ribbon-monogram.svg",
+      "relative_path": "logos/ribbon-monogram.svg",
+      "mime_type": "image/svg+xml",
+      "is_default": 1,
+      "created_at": "2026-04-09T09:44:38.320Z"
+    },
+    {
+      "id": 2,
+      "kind": "logo",
+      "name": "Blue Crest",
+      "file_name": "blue-crest.svg",
+      "relative_path": "logos/blue-crest.svg",
+      "mime_type": "image/svg+xml",
+      "is_default": 1,
+      "created_at": "2026-04-09T09:44:38.322Z"
+    },
+    {
+      "id": 3,
+      "kind": "logo",
+      "name": "Geo Spark",
+      "file_name": "geo-spark.svg",
+      "relative_path": "logos/geo-spark.svg",
+      "mime_type": "image/svg+xml",
+      "is_default": 1,
+      "created_at": "2026-04-09T09:44:38.325Z"
+    },
+    {
+      "id": 4,
+      "kind": "signature",
+      "name": "Executive Signature",
+      "file_name": "executive-signature.svg",
+      "relative_path": "signatures/executive-signature.svg",
+      "mime_type": "image/svg+xml",
+      "is_default": 1,
+      "created_at": "2026-04-09T09:44:38.326Z"
+    }
+  ],
+  "certificates": []
+}
