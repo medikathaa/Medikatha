@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../components/Button';
+import { Link } from 'react-router-dom';
 
-// Colorful floating word decorations
+// Floating clinical research words
 const floatingWords = [
-  { word: 'Cardiology', x: '5%', y: '15%', color: '#e03a3a', delay: 0 },
-  { word: 'Diabetes', x: '75%', y: '10%', color: '#0f6ccf', delay: 0.4 },
-  { word: 'Patient Trust', x: '10%', y: '75%', color: '#66ba3c', delay: 0.8 },
-  { word: 'Adherence', x: '70%', y: '78%', color: '#9b59b6', delay: 0.3 },
-  { word: 'Oncology', x: '50%', y: '5%', color: '#e67e22', delay: 0.6 },
-  { word: 'Storytelling', x: '85%', y: '50%', color: '#1abc9c', delay: 1 },
+  { word: 'Oncology', x: '5%', y: '15%', color: '#e03a3a', delay: 0 },
+  { word: 'Clinical Trials', x: '70%', y: '10%', color: '#0f6ccf', delay: 0.4 },
+  { word: 'Site Management', x: '8%', y: '75%', color: '#66ba3c', delay: 0.8 },
+  { word: 'GCP Certified', x: '68%', y: '78%', color: '#9b59b6', delay: 0.3 },
+  { word: 'Pharmacovigilance', x: '45%', y: '5%', color: '#e67e22', delay: 0.6 },
+  { word: 'Research Partner', x: '82%', y: '50%', color: '#1abc9c', delay: 1 },
 ];
 
 export function CtaSection() {
@@ -20,7 +20,7 @@ export function CtaSection() {
       padding: 'var(--space-16) 0',
       background: 'linear-gradient(135deg, #0b1e35 0%, #0a3a6b 50%, #0b1e35 100%)',
     }}>
-      {/* Floating colored word decorations */}
+      {/* Floating word decorations */}
       {floatingWords.map((item, i) => (
         <motion.div
           key={item.word}
@@ -90,22 +90,46 @@ export function CtaSection() {
               transition={{ duration: 2, repeat: Infinity }}
               style={{ width: 6, height: 6, borderRadius: '50%', background: '#66ba3c', display: 'inline-block' }}
             />
-            Ready to transform your brand?
+            Let's build the future of healthcare together
           </div>
 
           <h2 className="text-display" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', color: '#fff', lineHeight: 1.1, marginBottom: 16, maxWidth: 700, margin: '0 auto 16px' }}>
-            Ready to make your clinical communication unforgettable?
+            Ready to advance clinical research with a trusted partner?
           </h2>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.1rem', color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, maxWidth: 560, margin: '0 auto 36px' }}>
-            Book a strategy call to discuss how we can build better patient understanding and adherence for your therapies.
+            Whether you're a Sponsor, CRO, Hospital, Investigator, or Research Aspirant — Medikatha is ready to support your journey in clinical research.
           </p>
 
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button to="/contact" variant="secondary">Book Strategy Call</Button>
-            <Button to="/stories" variant="ghost">See Our Work →</Button>
+            <Link
+              to="/contact"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '14px 32px', borderRadius: 999,
+                background: '#fff', color: '#0c2233',
+                fontFamily: 'var(--font-ui)', fontSize: '0.9rem', fontWeight: 700,
+                textDecoration: 'none',
+                boxShadow: '0 8px 32px rgba(255,255,255,0.2)',
+              }}
+            >
+              Get In Touch
+            </Link>
+            <Link
+              to="/services"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '14px 32px', borderRadius: 999,
+                border: '1px solid rgba(255,255,255,0.25)',
+                color: '#fff',
+                fontFamily: 'var(--font-ui)', fontSize: '0.9rem', fontWeight: 500,
+                textDecoration: 'none',
+              }}
+            >
+              View Services →
+            </Link>
           </div>
 
-          {/* Colorful stat pills */}
+          {/* Stat pills */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -114,9 +138,9 @@ export function CtaSection() {
             style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginTop: 40 }}
           >
             {[
-              { stat: '50+', label: 'Narratives', color: '#0f6ccf' },
-              { stat: '15+', label: 'Therapy Areas', color: '#66ba3c' },
-              { stat: '3×', label: 'Comprehension', color: '#e03a3a' },
+              { stat: '7+', label: 'Therapeutic Areas', color: '#0f6ccf' },
+              { stat: 'ISO', label: 'Certified Institute', color: '#66ba3c' },
+              { stat: '8', label: 'Training Programs', color: '#e03a3a' },
             ].map(item => (
               <div key={item.stat} style={{
                 padding: '10px 20px',

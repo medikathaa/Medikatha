@@ -2,14 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const tags = [
-  { label: 'Healthcare Storytelling', color: '#0f6ccf' },
-  { label: 'Clinical Communication', color: '#e03a3a' },
-  { label: 'Patient Education', color: '#66ba3c' },
-  { label: 'Pharma Content', color: '#9b59b6' },
-  { label: 'Medical Writing', color: '#e67e22' },
-  { label: 'Therapy Strategy', color: '#1abc9c' },
-  { label: 'SEO for Healthcare', color: '#0f6ccf' },
-  { label: 'Treatment Adherence', color: '#e03a3a' },
+  { label: 'Clinical Research', color: '#0f6ccf' },
+  { label: 'Site Management (SMO)', color: '#e03a3a' },
+  { label: 'ISO Certified Training', color: '#66ba3c' },
+  { label: 'Pharmacovigilance', color: '#9b59b6' },
+  { label: 'Good Clinical Practice (GCP)', color: '#e67e22' },
+  { label: 'Regulatory Affairs', color: '#1abc9c' },
+  { label: 'Patient Recruitment', color: '#0f6ccf' },
+  { label: 'Oncology Research', color: '#e03a3a' },
+  { label: 'Clinical Data Management', color: '#66ba3c' },
+  { label: 'Investigator Support', color: '#9b59b6' },
 ];
 
 // Duplicate for seamless loop

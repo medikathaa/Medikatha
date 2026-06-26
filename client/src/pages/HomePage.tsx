@@ -3,19 +3,16 @@ import { usePageSeo } from '../lib/seo';
 import { HeroSection } from '../sections/home/HeroSection';
 import { MarqueeStrip } from '../components/MarqueeStrip';
 import { ServicesSection } from '../sections/home/ServicesSection';
-import { TranslationSection } from '../sections/home/TranslationSection';
-import { ProcessSection } from '../sections/home/ProcessSection';
 import { TherapeuticSection } from '../sections/home/TherapeuticSection';
-import { CaseStudiesSection } from '../sections/home/CaseStudiesSection';
 import { ResultsSection } from '../sections/home/ResultsSection';
 import { CtaSection } from '../sections/home/CtaSection';
 
 export function HomePage() {
   usePageSeo({
-    title: 'Medicine Storytelling Platform',
-    description: 'Medikatha brings medicine, research, and patient education together through professional healthcare storytelling programs.',
+    title: 'Medikatha Clinical Research — Story of Medicine',
+    description: 'Medikatha Clinical Research is a Clinical Research and Site Management Organization (SMO) and ISO-certified training institute supporting Sponsors, CROs, Hospitals, Investigators, and Patients.',
     path: '/',
-    keywords: 'medicine storytelling, healthcare communication, pharmaceutical education, patient awareness',
+    keywords: 'clinical research, site management, SMO, CRO, clinical trial, pharmacovigilance, GCP training, ISO certified',
   });
 
   return (
@@ -23,10 +20,7 @@ export function HomePage() {
       <HeroSection />
       <MarqueeStrip />
       <ServicesSection />
-      <TranslationSection />
-      <ProcessSection />
       <TherapeuticSection />
-      <CaseStudiesSection />
       <ResultsSection />
       <CtaSection />
     </main>

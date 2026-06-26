@@ -11,7 +11,7 @@ import { ScrollProgressBar } from './components/ScrollProgressBar';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
-import { TherapeuticAreasPage } from './pages/TherapeuticAreasPage';
+import { ServicesPage } from './pages/ServicesPage';
 import { StoriesPage } from './pages/StoriesPage';
 import { ResourcesPage } from './pages/ResourcesPage';
 import { ContactPage } from './pages/ContactPage';
@@ -48,11 +48,13 @@ export default function App() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
             <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
-            <Route path="/therapeutic-areas" element={<PageWrapper><TherapeuticAreasPage /></PageWrapper>} />
-            <Route path="/stories" element={<PageWrapper><StoriesPage /></PageWrapper>} />
-            <Route path="/resources" element={<PageWrapper><ResourcesPage /></PageWrapper>} />
+            <Route path="/services" element={<PageWrapper><ServicesPage /></PageWrapper>} />
             <Route path="/courses" element={<PageWrapper><CoursesPage /></PageWrapper>} />
             <Route path="/contact" element={<PageWrapper><ContactPage /></PageWrapper>} />
+            {/* Legacy redirects — keep pages alive to avoid broken links */}
+            <Route path="/therapeutic-areas" element={<PageWrapper><ServicesPage /></PageWrapper>} />
+            <Route path="/stories" element={<PageWrapper><StoriesPage /></PageWrapper>} />
+            <Route path="/resources" element={<PageWrapper><ResourcesPage /></PageWrapper>} />
             <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
           </Routes>
         </AnimatePresence>

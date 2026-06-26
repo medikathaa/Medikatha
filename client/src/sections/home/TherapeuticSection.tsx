@@ -29,12 +29,13 @@ const positions = getSpokePositions(areas.length);
 
 // Short area labels for the nodes (keep to 2 lines max)
 const shortTitles = [
-  ['Cardiovascular', 'Care'],
-  ['Endocrine &', 'Diabetes'],
-  ['Respiratory', 'Medicine'],
-  ['Infectious', 'Diseases'],
-  ["Women's", 'Health'],
-  ['Gastro &', 'Liver'],
+  ['Oncology', ''],
+  ['Vaccines', 'Pediatric & Adult'],
+  ['Dermatology', ''],
+  ['Neurology', ''],
+  ['Cardiology', ''],
+  ['Medical', 'Devices'],
+  ['Immunology', ''],
 ];
 
 export function TherapeuticSection() {
@@ -44,9 +45,9 @@ export function TherapeuticSection() {
     <section style={{ padding: 'var(--space-20) 0', background: 'var(--bg-alt)', overflow: 'hidden' }}>
       <div className="container">
         <SectionHead
-          eyebrow="Therapeutic Expertise"
-          title="Our Healthcare Ecosystem"
-          description="Click any therapeutic area to explore our deep clinical communication expertise."
+          eyebrow="Therapeutic Areas"
+          title="Our Clinical Research Focus"
+          description="We support clinical research across 7 key therapeutic areas. Click any area to learn more."
           align="center"
         />
 
@@ -57,21 +58,28 @@ export function TherapeuticSection() {
             style={{ width: '100%', maxWidth: 860, display: 'block', margin: '0 auto', overflow: 'visible' }}
             aria-hidden="true"
           >
-            {/* Dashed connection lines — real SVG coordinates */}
-            {positions.map((pos, i) => (
-              <motion.line
-                key={`line-${i}`}
-                x1={CX} y1={CY}
-                x2={pos.x} y2={pos.y}
-                stroke={activeIndex === i ? COLORS[i] : '#c8d8e8'}
-                strokeWidth={activeIndex === i ? 2 : 1}
-                strokeDasharray="6 4"
-                initial={{ opacity: 0, pathLength: 0 }}
-                animate={{ opacity: 1, pathLength: 1 }}
-                transition={{ delay: 0.2 + i * 0.1, duration: 0.7, ease: 'easeOut' }}
-                style={{ transition: 'stroke 0.3s ease, stroke-width 0.3s ease' }}
-              />
-            ))}
+            {/* Animated flowing connection lines */}
+            {positions.map((pos, i) => {
+              const isActive = activeIndex === i;
+              return (
+                <motion.line
+                  key={`line-${i}`}
+                  x1={CX} y1={CY}
+                  x2={pos.x} y2={pos.y}
+                  stroke={COLORS[i]}
+                  strokeWidth={isActive ? 3 : 1.5}
+                  strokeDasharray="6 6"
+                  initial={{ opacity: 0, pathLength: 0, strokeDashoffset: 0 }}
+                  animate={{ opacity: isActive ? 1 : 0.6, pathLength: 1, strokeDashoffset: -24 }}
+                  transition={{ 
+                    opacity: { delay: 0.2 + i * 0.1, duration: 0.7 },
+                    pathLength: { delay: 0.2 + i * 0.1, duration: 0.7 },
+                    strokeDashoffset: { duration: 1.5, repeat: Infinity, ease: 'linear' }
+                  }}
+                  style={{ transition: 'stroke-width 0.3s ease' }}
+                />
+              );
+            })}
 
             {/* Pulsing rings behind hub */}
             {[1.6, 1.3, 1.0].map((scale, k) => (
@@ -87,40 +95,27 @@ export function TherapeuticSection() {
               />
             ))}
 
-            {/* Hub circle */}
+            {/* Hub circle background */}
             <motion.circle
-              cx={CX} cy={CY} r={62}
-              fill="#0f6ccf"
+              cx={CX} cy={CY} r={65}
+              fill="#ffffff"
+              stroke="#0f6ccf"
+              strokeWidth={1.5}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1, type: 'spring', stiffness: 80 }}
-              style={{ filter: 'drop-shadow(0 0 24px rgba(15,108,207,0.5))' }}
+              style={{ filter: 'drop-shadow(0 10px 30px rgba(15,108,207,0.25))' }}
             />
-            {/* Hub label */}
-            <motion.text
-              x={CX} y={CY - 10}
-              textAnchor="middle"
-              fill="#ffffff"
-              fontSize="18"
-              fontFamily="DM Serif Display, serif"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              Medi
-            </motion.text>
-            <motion.text
-              x={CX} y={CY + 14}
-              textAnchor="middle"
-              fill="#ffffff"
-              fontSize="18"
-              fontFamily="DM Serif Display, serif"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.55 }}
-            >
-              katha
-            </motion.text>
+            {/* Center Logo Icon */}
+            <motion.image
+              href="/images/logo-icon.png"
+              x={CX - 40} y={CY - 40}
+              width={80} height={80}
+              initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ delay: 0.3, type: 'spring', stiffness: 100 }}
+              style={{ mixBlendMode: 'multiply' }}
+            />
 
             {/* Spoke node buttons rendered as foreignObject for full HTML/CSS support */}
             {positions.map((pos, i) => {
@@ -130,62 +125,58 @@ export function TherapeuticSection() {
               return (
                 <motion.g
                   key={`node-${i}`}
-                  initial={{ opacity: 0, scale: 0.7 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.35 + i * 0.1, type: 'spring', stiffness: 90 }}
-                  whileHover={{ scale: 1.07 }}
-                  whileTap={{ scale: 0.97 }}
+                  initial={{ opacity: 0, scale: 0.7, y: 0 }}
+                  animate={{ opacity: 1, scale: isActive ? 1.05 : 1, y: [0, -8, 0] }}
+                  transition={{ 
+                    opacity: { delay: 0.35 + i * 0.1, duration: 0.5 },
+                    scale: { delay: 0.35 + i * 0.1, type: 'spring', stiffness: 90 },
+                    y: { delay: 0.35 + i * 0.1, duration: 4, repeat: Infinity, ease: 'easeInOut' }
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => setActiveIndex(isActive ? null : i)}
                   style={{ cursor: 'pointer' }}
                 >
-                  {/* Node glow when active */}
-                  {isActive && (
-                    <ellipse
-                      cx={pos.x} cy={pos.y}
-                      rx={nodeW / 2 + 6} ry={nodeH / 2 + 6}
-                      fill={`${COLORS[i]}22`}
-                      stroke={COLORS[i]}
-                      strokeWidth={1.5}
-                    />
-                  )}
                   <rect
                     x={pos.x - nodeW / 2}
                     y={pos.y - nodeH / 2}
                     width={nodeW}
                     height={nodeH}
-                    rx={14}
-                    ry={14}
-                    fill={isActive ? COLORS[i] : '#ffffff'}
-                    stroke={isActive ? COLORS[i] : '#dde8f0'}
-                    strokeWidth={1.5}
-                    style={{ filter: isActive ? `drop-shadow(0 6px 20px ${COLORS[i]}60)` : 'drop-shadow(0 4px 10px rgba(0,0,0,0.06))', transition: 'fill 0.3s ease, stroke 0.3s ease' }}
+                    rx={16}
+                    ry={16}
+                    fill={COLORS[i]}
+                    stroke={isActive ? '#ffffff' : 'none'}
+                    strokeWidth={isActive ? 3 : 0}
+                    style={{ filter: `drop-shadow(0 10px 24px ${COLORS[i]}60)`, transition: 'stroke 0.3s ease' }}
                   />
                   {/* Line 1 */}
                   <text
                     x={pos.x}
-                    y={pos.y - 6}
+                    y={pos.y - (shortTitles[i][1] ? 6 : -4)}
                     textAnchor="middle"
-                    fill={isActive ? '#ffffff' : '#0c2233'}
-                    fontSize="13"
+                    fill="#ffffff"
+                    fontSize="14"
                     fontFamily="Sora, sans-serif"
-                    fontWeight="600"
-                    style={{ transition: 'fill 0.3s ease', userSelect: 'none' }}
+                    fontWeight="700"
+                    style={{ userSelect: 'none' }}
                   >
                     {shortTitles[i][0]}
                   </text>
                   {/* Line 2 */}
-                  <text
-                    x={pos.x}
-                    y={pos.y + 12}
-                    textAnchor="middle"
-                    fill={isActive ? 'rgba(255,255,255,0.85)' : '#4a657a'}
-                    fontSize="12"
-                    fontFamily="Sora, sans-serif"
-                    fontWeight="500"
-                    style={{ transition: 'fill 0.3s ease', userSelect: 'none' }}
-                  >
-                    {shortTitles[i][1]}
-                  </text>
+                  {shortTitles[i][1] && (
+                    <text
+                      x={pos.x}
+                      y={pos.y + 12}
+                      textAnchor="middle"
+                      fill="rgba(255,255,255,0.9)"
+                      fontSize="12"
+                      fontFamily="Sora, sans-serif"
+                      fontWeight="500"
+                      style={{ userSelect: 'none' }}
+                    >
+                      {shortTitles[i][1]}
+                    </text>
+                  )}
                 </motion.g>
               );
             })}

@@ -1,113 +1,216 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { MedikathaLogo } from './MedikathaLogo';
 
-const footerLinks = {
-  Explore: [
-    { label: 'About Us', to: '/about' },
-    { label: 'Therapeutic Areas', to: '/therapeutic-areas' },
-    { label: 'Medicine Stories', to: '/stories' },
-    { label: 'Resources', to: '/resources' },
+const footerNav = {
+  Navigate: [
+    { label: 'Home',       to: '/' },
+    { label: 'About Us',   to: '/about' },
+    { label: 'Services',   to: '/services' },
+    { label: 'Courses',    to: '/courses' },
+    { label: 'Contact Us', to: '/contact' },
   ],
   Connect: [
-    { label: 'Contact Us', to: '/contact' },
-    { label: 'hello@medikatha.com', href: 'mailto:hello@medikatha.com' },
-    { label: '+91 88888 00000', href: 'tel:+918888800000' },
+    { label: 'medikathacr@gmail.com',        href: 'mailto:medikathacr@gmail.com' },
+    { label: 'nikita.medikatha@gmail.com',   href: 'mailto:nikita.medikatha@gmail.com' },
+    { label: '+91 7767809945',               href: 'tel:+917767809945' },
+    { label: 'LinkedIn',                     href: 'https://www.linkedin.com/company/101387086' },
+    { label: 'Instagram',                    href: 'https://www.instagram.com/medikatha_research' },
   ],
-};
-
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.06 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0 },
 };
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const [email, setEmail]         = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = () => {
+    if (email.includes('@')) { setSubscribed(true); setEmail(''); }
+  };
 
   return (
     <footer style={{
       background: '#070e17',
       backgroundColor: '#070e17',
       color: 'rgba(255,255,255,0.55)',
-      padding: 'var(--space-16) 0 var(--space-6)',
-      marginTop: 'auto',
       position: 'relative',
       overflow: 'hidden',
       zIndex: 1,
     }}>
-      {/* Top glow */}
+      {/* Top accent line */}
       <div style={{
         position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)',
-        width: '60%', height: '1px',
-        background: 'linear-gradient(90deg, transparent, var(--brand-blue), transparent)',
+        width: '55%', height: 1,
+        background: 'linear-gradient(90deg, transparent, #0f6ccf60, transparent)',
       }} />
 
-      {/* Background decoration */}
+      {/* Static glow blobs (no animation = no repaint) */}
       <div style={{
-        position: 'absolute', bottom: '-100px', right: '-100px',
-        width: '400px', height: '400px', borderRadius: '50%',
+        position: 'absolute', bottom: -100, right: -100, width: 400, height: 400,
+        borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(15,108,207,0.08) 0%, transparent 70%)',
         pointerEvents: 'none',
       }} />
+      <div style={{
+        position: 'absolute', top: -60, left: -80, width: 300, height: 300,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(102,186,60,0.05) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
 
-      <div className="container">
+      <div className="container" style={{ paddingTop: 80, paddingBottom: 48 }}>
+
+        {/* ── Large Statement ── */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: 'var(--space-10)',
-            marginBottom: 'var(--space-10)',
+            borderBottom: '1px solid rgba(255,255,255,0.07)',
+            paddingBottom: 56, marginBottom: 56,
           }}
         >
-          {/* Brand */}
-          <motion.div variants={itemVariants}>
-            <h3 className="text-display" style={{ color: '#fff', fontSize: '2.5rem', marginBottom: 'var(--space-3)', lineHeight: 1 }}>
-              Medi<br />katha
-            </h3>
-            <p className="text-body" style={{ maxWidth: '260px', lineHeight: 1.8, fontSize: '0.9rem' }}>
-              We transform medicine into meaningful stories that improve understanding, trust, and outcomes.
+          <div style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2.6rem, 6.5vw, 5rem)',
+            color: '#fff', lineHeight: 1.08,
+            letterSpacing: '-0.02em', maxWidth: 820,
+          }}>
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              style={{ display: 'block' }}
+            >
+              Clinical Insight.
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.22, duration: 0.6 }}
+              style={{ display: 'block', color: '#0f6ccf' }}
+            >
+              Human Language.
+            </motion.span>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            style={{
+              fontFamily: 'var(--font-body)', fontSize: '1.05rem',
+              color: 'rgba(255,255,255,0.42)', lineHeight: 1.72,
+              maxWidth: 520, marginTop: 20, marginBottom: 32,
+            }}
+          >
+            Medikatha Clinical Research — advancing healthcare through expert site management, clinical research support, and ISO-certified professional education.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+          >
+            <Link to="/contact" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '11px 26px', borderRadius: 999,
+              background: '#0f6ccf', color: '#fff',
+              fontFamily: 'var(--font-ui)', fontSize: '0.88rem', fontWeight: 600,
+              textDecoration: 'none',
+              boxShadow: '0 6px 22px rgba(15,108,207,0.32)',
+              transition: 'transform 0.2s ease',
+            }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; }}
+            >
+              Get In Touch →
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* ── Main grid ── */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: 40,
+          marginBottom: 48,
+        }}>
+          {/* Brand column — real logo */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            {/* Logo with wordmark (light variant = white text) */}
+            <MedikathaLogo size={42} variant="light" animate={false} showWordmark={true} />
+
+            <p style={{
+              maxWidth: 240, lineHeight: 1.75, fontSize: '0.875rem',
+              marginTop: 14, color: 'rgba(255,255,255,0.4)',
+            }}>
+              A Clinical Research and Site Management Organization — Story of Medicine.
             </p>
-            <div style={{ marginTop: 'var(--space-4)', display: 'flex', gap: 'var(--space-3)' }}>
-              {['Clinical Insight', 'Human Language'].map(tag => (
-                <span key={tag} style={{
-                  padding: '4px 10px', borderRadius: 'var(--radius-full)',
-                  border: '1px solid rgba(255,255,255,0.12)',
-                  fontSize: '0.7rem', fontFamily: 'var(--font-ui)',
-                  color: 'rgba(255,255,255,0.5)'
-                }}>{tag}</span>
-              ))}
+
+            {/* ISO badge */}
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              marginTop: 14, padding: '4px 12px 4px 8px', borderRadius: 999,
+              background: 'rgba(102,186,60,0.1)', border: '1px solid rgba(102,186,60,0.22)',
+            }}>
+              <div style={{
+                width: 18, height: 18, borderRadius: '50%', background: '#66ba3c',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '0.56rem', fontWeight: 800, color: '#fff',
+              }}>✓</div>
+              <span style={{
+                fontFamily: 'var(--font-ui)', fontSize: '0.66rem',
+                fontWeight: 700, color: '#66ba3c', letterSpacing: '0.06em',
+              }}>
+                ISO CERTIFIED
+              </span>
             </div>
           </motion.div>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([group, links]) => (
-            <motion.div key={group} variants={itemVariants}>
-              <h4 className="text-ui" style={{ color: '#fff', marginBottom: 'var(--space-4)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+          {/* Links columns */}
+          {Object.entries(footerNav).map(([group, links], gi) => (
+            <motion.div
+              key={group}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: gi * 0.08 }}
+            >
+              <h4 style={{
+                color: '#fff', marginBottom: 16,
+                fontFamily: 'var(--font-ui)', fontSize: '0.75rem',
+                textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 700,
+              }}>
                 {group}
               </h4>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-                {links.map((link: any) => (
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {(links as any[]).map((link) => (
                   <li key={link.label}>
                     {'to' in link ? (
-                      <Link to={link.to} style={{ fontSize: '0.9375rem', transition: 'color 0.2s' }}
-                        onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                        onMouseLeave={e => (e.currentTarget.style.color = '')}
+                      <Link to={link.to} style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s' }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#fff'; }}
+                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = ''; }}
                       >
                         {link.label}
                       </Link>
                     ) : (
-                      <a href={link.href} style={{ fontSize: '0.9375rem', transition: 'color 0.2s' }}
-                        onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                        onMouseLeave={e => (e.currentTarget.style.color = '')}
+                      <a href={link.href}
+                        target={link.href?.startsWith('http') ? '_blank' : undefined}
+                        rel={link.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s', wordBreak: 'break-word' }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#fff'; }}
+                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = ''; }}
                       >
                         {link.label}
                       </a>
@@ -119,58 +222,97 @@ export function Footer() {
           ))}
 
           {/* Newsletter */}
-          <motion.div variants={itemVariants}>
-            <h4 className="text-ui" style={{ color: '#fff', marginBottom: 'var(--space-2)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <h4 style={{
+              color: '#fff', marginBottom: 8,
+              fontFamily: 'var(--font-ui)', fontSize: '0.75rem',
+              textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 700,
+            }}>
               Stay Updated
             </h4>
-            <p style={{ fontSize: '0.875rem', marginBottom: 'var(--space-3)', lineHeight: 1.6 }}>
-              Healthcare communication insights, monthly.
+            <p style={{ fontSize: '0.875rem', marginBottom: 14, lineHeight: 1.6, color: 'rgba(255,255,255,0.42)' }}>
+              Clinical research insights, monthly.
             </p>
-            <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
-              <input
-                type="email"
-                placeholder="your@email.com"
+            {subscribed ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
                 style={{
-                  flex: 1, padding: '10px 14px',
-                  borderRadius: 'var(--radius-md)',
-                  border: '1px solid rgba(255,255,255,0.12)',
-                  background: 'rgba(255,255,255,0.05)',
-                  color: '#fff',
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.875rem',
-                  outline: 'none',
-                  minWidth: 0,
-                }}
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                style={{
-                  padding: '10px 18px',
-                  borderRadius: 'var(--radius-md)',
-                  background: 'var(--brand-blue)',
-                  border: 'none', cursor: 'pointer',
-                  color: '#fff', fontFamily: 'var(--font-ui)',
-                  fontSize: '0.875rem', fontWeight: 600,
-                  whiteSpace: 'nowrap',
+                  padding: '10px 16px', borderRadius: 10,
+                  background: 'rgba(102,186,60,0.14)', border: '1px solid rgba(102,186,60,0.28)',
+                  fontFamily: 'var(--font-ui)', fontSize: '0.8rem', color: '#66ba3c', fontWeight: 600,
                 }}
               >
-                →
-              </motion.button>
-            </div>
+                ✓ Thanks for subscribing!
+              </motion.div>
+            ) : (
+              <div style={{ display: 'flex', gap: 8 }}>
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') handleSubscribe(); }}
+                  style={{
+                    flex: 1, padding: '9px 13px', borderRadius: 8, minWidth: 0,
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    background: 'rgba(255,255,255,0.05)',
+                    color: '#fff', fontFamily: 'var(--font-body)', fontSize: '0.875rem',
+                    outline: 'none',
+                  }}
+                />
+                <button
+                  onClick={handleSubscribe}
+                  style={{
+                    padding: '9px 16px', borderRadius: 8, border: 'none',
+                    background: '#0f6ccf', color: '#fff', cursor: 'pointer',
+                    fontFamily: 'var(--font-ui)', fontSize: '0.875rem', fontWeight: 600,
+                    transition: 'opacity 0.2s',
+                  }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '0.85'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '1'; }}
+                >
+                  →
+                </button>
+              </div>
+            )}
           </motion.div>
-        </motion.div>
+        </div>
 
-        {/* Bottom bar */}
+        {/* ── Bottom bar ── */}
         <div style={{
-          paddingTop: 'var(--space-5)',
-          borderTop: '1px solid rgba(255,255,255,0.07)',
+          paddingTop: 20,
+          borderTop: '1px solid rgba(255,255,255,0.06)',
           display: 'flex', justifyContent: 'space-between',
-          alignItems: 'center', flexWrap: 'wrap', gap: 'var(--space-3)',
-          fontSize: '0.8rem',
+          alignItems: 'center', flexWrap: 'wrap', gap: 12,
         }}>
-          <p>© {year} Medikatha. All rights reserved.</p>
-          <p className="text-ui" style={{ letterSpacing: '0.05em' }}>Story of a Medicine</p>
+          <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.78rem' }}>
+            © {year} Medikatha Clinical Research. All rights reserved.
+          </p>
+
+          {/* Animated icon-only logo */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <img
+              src="/images/logo-icon.png"
+              alt="Medikatha"
+              width={28} height={28}
+              loading="lazy"
+              decoding="async"
+              style={{
+                objectFit: 'contain',
+                animation: 'logoFloat 4s ease-in-out infinite',
+                willChange: 'transform',
+              }}
+            />
+            <style>{`@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}`}</style>
+            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.72rem', color: 'rgba(255,255,255,0.28)', letterSpacing: '0.05em' }}>
+              Story of Medicine
+            </span>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,18 +1,26 @@
 export const services = [
   {
-    title: 'Healthcare Storytelling',
-    description: 'Transforming complex medical science into engaging, human-centric narratives.',
+    title: 'Clinical Research & Site Management',
+    description: 'Comprehensive support for clinical studies — from site identification and feasibility to trial coordination and regulatory compliance.',
+    icon: '⚕',
+    color: '#0f6ccf',
   },
   {
-    title: 'Medical Communication',
-    description: 'Precision-driven scientific communication for healthcare professionals.',
+    title: 'Site Management Services (SMO)',
+    description: 'Dedicated operational support for hospitals and investigators throughout the clinical trial lifecycle.',
+    icon: '🏥',
+    color: '#66ba3c',
   },
   {
-    title: 'Patient Education',
-    description: 'Clear, empathetic resources that empower patients to take charge of their health.',
+    title: 'Clinical Research Coordinator Support',
+    description: 'Trained CRC professionals providing site coordination, participant management, and documentation quality support.',
+    icon: '📋',
+    color: '#e03a3a',
   },
   {
-    title: 'Therapeutic Communication',
-    description: 'Strategic messaging aligned with specific therapeutic areas and clinical pathways.',
+    title: 'Clinical Research Training',
+    description: 'ISO-certified industry-oriented programs for life science graduates, pharmacy professionals, and clinical research aspirants.',
+    icon: '🎓',
+    color: '#9b59b6',
   },
 ];

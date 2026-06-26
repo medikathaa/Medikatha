@@ -1,403 +1,308 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
-import { Button } from '../../components/Button';
-
-// ── Rotating therapy words ──────────────────────────────────────
-const therapyWords = ['Cardiology', 'Diabetes', 'Respiratory', "Women's Health", 'Oncology', 'Neurology'];
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { MedikathaLogo } from '../../components/MedikathaLogo';
+// ── Rotating tagline words ─────────────────────────────────────────
+const rotatingWords = ['Innovation', 'Discovery', 'Partnership', 'Excellence', 'Education', 'Research'];
 
 function RotatingWord() {
   const [index, setIndex] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setIndex(i => (i + 1) % therapyWords.length), 2400);
+    const t = setInterval(() => setIndex(i => (i + 1) % rotatingWords.length), 2600);
     return () => clearInterval(t);
   }, []);
-
   return (
-    <span style={{ display: 'inline-block', position: 'relative' }}>
+    <span style={{ display: 'inline-block', position: 'relative', minWidth: 200 }}>
       <AnimatePresence mode="wait">
         <motion.span
           key={index}
-          initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          exit={{ opacity: 0, y: -24, filter: 'blur(6px)' }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           style={{ display: 'inline-block', color: 'var(--brand-blue)', fontStyle: 'italic' }}
         >
-          {therapyWords[index]}
+          {rotatingWords[index]}
         </motion.span>
       </AnimatePresence>
     </span>
   );
 }
 
-// ── Ambient background dots ──────────────────────────────────────
-const dots = Array.from({ length: 14 }, (_, i) => ({
-  id: i,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 3 + 1.5,
-  delay: Math.random() * 4,
-  dur: Math.random() * 6 + 5,
-}));
-
-// ── Medikatha Brand Visual ───────────────────────────────────────
-function MedikathaVisual({ rotateX, rotateY }: { rotateX: any; rotateY: any }) {
+// ── ISO Badge ────────────────────────────────────────────────────
+function IsoBadge() {
   return (
-    <motion.div
-      style={{
-        width: 340, height: 340,
-        position: 'relative',
-        display: 'grid', placeItems: 'center',
-        rotateX, rotateY,
-        transformStyle: 'preserve-3d',
-      }}
-    >
-      {/* ── Outermost slow orbit ring ── */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 32, ease: 'linear', repeat: Infinity }}
-        style={{
-          position: 'absolute', inset: -56,
-          border: '1px dashed rgba(15,108,207,0.25)',
-          borderRadius: '50%',
-        }}
-      >
-        {/* Orbiting blue dot */}
-        <div style={{
-          position: 'absolute', top: -5, left: '50%', transform: 'translateX(-50%)',
-          width: 10, height: 10, borderRadius: '50%',
-          background: 'var(--brand-blue)',
-          boxShadow: '0 0 12px var(--brand-blue)',
-        }} />
-      </motion.div>
+    <div style={{
+      display: 'inline-flex', alignItems: 'center', gap: 8,
+      padding: '5px 14px 5px 8px',
+      borderRadius: 999,
+      background: 'rgba(102,186,60,0.1)',
+      border: '1px solid rgba(102,186,60,0.28)',
+    }}>
+      <div style={{
+        width: 22, height: 22, borderRadius: '50%',
+        background: 'linear-gradient(135deg, #66ba3c, #48a020)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontSize: '0.6rem', fontWeight: 800, color: '#fff',
+        fontFamily: 'var(--font-ui)', flexShrink: 0,
+      }}>✓</div>
+      <span style={{
+        fontFamily: 'var(--font-ui)', fontSize: '0.72rem', fontWeight: 700,
+        color: '#66ba3c', letterSpacing: '0.05em',
+      }}>
+        ISO Certified Training Institute
+      </span>
+    </div>
+  );
+}
 
-      {/* ── Middle orbit ring ── */}
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 22, ease: 'linear', repeat: Infinity }}
-        style={{
-          position: 'absolute', inset: -24,
-          border: '1px solid rgba(102,186,60,0.2)',
-          borderRadius: '50%',
-        }}
-      >
-        {/* Orbiting green dot */}
-        <div style={{
-          position: 'absolute', bottom: -4, right: '20%',
-          width: 8, height: 8, borderRadius: '50%',
-          background: 'var(--brand-green)',
-          boxShadow: '0 0 10px var(--brand-green)',
-        }} />
-      </motion.div>
-
-      {/* ── Sonar pulse rings ── */}
-      {[0, 1.2, 2.4].map((d, k) => (
-        <motion.div
-          key={k}
-          animate={{ scale: [1, 2.2], opacity: [0.25, 0] }}
-          transition={{ duration: 3, delay: d, repeat: Infinity, ease: 'easeOut' }}
-          style={{
-            position: 'absolute',
-            width: 100, height: 100,
-            borderRadius: '50%',
-            border: '1.5px solid var(--brand-blue)',
-            pointerEvents: 'none',
-          }}
-        />
-      ))}
-
-      {/* ── Main sphere (white card base) ── */}
-      <motion.div
-        initial={{ scale: 0.75, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.3, type: 'spring', stiffness: 60 }}
-        style={{
-          width: 240, height: 240,
-          borderRadius: '50%',
-          background: 'linear-gradient(145deg, #ffffff 0%, #eef4fb 100%)',
-          boxShadow: '0 24px 64px rgba(12,34,51,0.14), inset 0 1px 1px rgba(255,255,255,0.9)',
-          border: '1px solid rgba(12,34,51,0.07)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
-        }}
-      >
-        {/* ── Capsule (the brand logo mark, large version) ── */}
-        <motion.div
-          animate={{ y: [0, -6, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 6,
-          }}
-        >
-          {/* Pill shape */}
-          <div style={{
-            display: 'flex',
-            width: 100, height: 44,
-            borderRadius: 99,
-            overflow: 'hidden',
-            position: 'relative',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.18)',
-          }}>
-            <div style={{
-              flex: 1,
-              background: 'linear-gradient(135deg, #f05252, #c82d2d)',
-            }} />
-            <div style={{
-              flex: 1,
-              background: 'linear-gradient(135deg, #3d8fe0, #0a4d9b)',
-            }} />
-            {/* Center + badge */}
-            <div style={{
-              position: 'absolute', top: '50%', left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 26, height: 26,
-              borderRadius: 6,
-              background: '#fff',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 700, fontSize: 16, color: '#0c2233',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-            }}>+</div>
-          </div>
-
-          {/* Brand name below pill */}
-          <div style={{ textAlign: 'center', lineHeight: 1.1 }}>
-            <div style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.1rem',
-              color: '#0c2233',
-              letterSpacing: '0.03em',
-            }}>Medikatha</div>
-            <div style={{
-              fontFamily: 'var(--font-ui)',
-              fontSize: '0.62rem',
-              color: '#728c9e',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              marginTop: 2,
-            }}>Story of a Medicine</div>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* ── Floating metric card — top right ── */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.1, type: 'spring' }}
-        className="glass-card"
-        style={{
-          position: 'absolute', top: '-4%', right: '-30%',
-          padding: '12px 18px', width: 158,
-        }}
-      >
-        <div className="text-display" style={{ fontSize: '1.8rem', color: 'var(--brand-blue)', lineHeight: 1 }}>50+</div>
-        <div className="text-ui text-muted" style={{ fontSize: '0.7rem', fontWeight: 600, marginTop: 3 }}>Narratives Delivered</div>
-      </motion.div>
-
-      {/* ── Floating metric card — bottom left ── */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.3, type: 'spring' }}
-        className="glass-card"
-        style={{
-          position: 'absolute', bottom: '0%', left: '-32%',
-          padding: '12px 18px', width: 158,
-        }}
-      >
-        <div className="text-display" style={{ fontSize: '1.8rem', color: 'var(--brand-green)', lineHeight: 1 }}>3×</div>
-        <div className="text-ui text-muted" style={{ fontSize: '0.7rem', fontWeight: 600, marginTop: 3 }}>Faster Comprehension</div>
-      </motion.div>
-
-      {/* ── Small floating tag — bottom right ── */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.6, type: 'spring' }}
-        style={{
-          position: 'absolute', bottom: '10%', right: '-20%',
-          padding: '8px 14px',
-          borderRadius: 'var(--radius-full)',
-          background: 'rgba(224,58,58,0.1)',
-          border: '1px solid rgba(224,58,58,0.2)',
-          fontFamily: 'var(--font-ui)',
-          fontSize: '0.7rem', fontWeight: 600,
-          color: 'var(--brand-red)',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        15+ Therapy Areas
-      </motion.div>
-    </motion.div>
+// ── Floating metric card ─────────────────────────────────────────
+function MetricCard({
+  value, label, color, style,
+}: { value: string; label: string; color: string; style?: React.CSSProperties }) {
+  return (
+    <div className="glass-card" style={{
+      padding: '12px 18px',
+      minWidth: 130,
+      ...style,
+    }}>
+      <div className="text-display" style={{ fontSize: '1.8rem', color, lineHeight: 1 }}>{value}</div>
+      <div className="text-ui text-muted" style={{ fontSize: '0.68rem', fontWeight: 600, marginTop: 3 }}>{label}</div>
+    </div>
   );
 }
 
 // ── Main Hero ────────────────────────────────────────────────────
 export function HeroSection() {
-  const visualRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
-  const yVisual = useTransform(scrollY, [0, 500], [0, 60]);
-  const opacityHero = useTransform(scrollY, [0, 280], [1, 0.3]);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const rotateX = useSpring(useTransform(mouseY, [-200, 200], [8, -8]), { stiffness: 80, damping: 25 });
-  const rotateY = useSpring(useTransform(mouseX, [-200, 200], [-8, 8]), { stiffness: 80, damping: 25 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!visualRef.current) return;
-    const rect = visualRef.current.getBoundingClientRect();
-    mouseX.set(e.clientX - (rect.left + rect.width / 2));
-    mouseY.set(e.clientY - (rect.top + rect.height / 2));
-  };
-  const handleMouseLeave = () => { mouseX.set(0); mouseY.set(0); };
+  // Parallax — image moves slower than scroll (GPU transform only)
+  const imgY = useTransform(scrollY, [0, 500], [0, 45]);
+  const fadeOut = useTransform(scrollY, [0, 260], [1, 0.4]);
 
   return (
-    <section style={{ padding: '60px 0 80px', position: 'relative', overflow: 'hidden' }}>
-      {/* Ambient dots */}
-      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-        {dots.map(d => (
-          <motion.div key={d.id}
-            animate={{ y: [0, -20, 0], opacity: [0.08, 0.3, 0.08] }}
-            transition={{ duration: d.dur, delay: d.delay, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              position: 'absolute', left: `${d.x}%`, top: `${d.y}%`,
-              width: d.size, height: d.size, borderRadius: '50%', background: 'var(--brand-blue)',
-            }}
-          />
-        ))}
-      </div>
+    <section
+      ref={sectionRef}
+      style={{ padding: '64px 0 80px', position: 'relative', overflow: 'hidden' }}
+    >
+      {/* Subtle ambient glow — static, no animation to avoid repaint */}
+      <div style={{
+        position: 'absolute', top: '-10%', right: '-5%',
+        width: 520, height: 520, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(15,108,207,0.12) 0%, transparent 68%)',
+        filter: 'blur(40px)', pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: '-15%', left: '-8%',
+        width: 380, height: 380, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(102,186,60,0.07) 0%, transparent 70%)',
+        filter: 'blur(40px)', pointerEvents: 'none',
+      }} />
 
-      {/* Blue glow */}
-      <motion.div
-        animate={{ scale: [1, 1.08, 1], opacity: [0.12, 0.2, 0.12] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute', top: '-15%', right: '-5%',
-          width: 500, height: 500, borderRadius: '50%',
-          background: 'radial-gradient(circle, var(--brand-blue) 0%, transparent 70%)',
-          filter: 'blur(60px)', pointerEvents: 'none',
-        }}
-      />
-
-      <motion.div style={{ opacity: opacityHero }} className="container">
+      <motion.div style={{ opacity: fadeOut }} className="container">
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: '40px',
+          gap: 48,
           alignItems: 'center',
-          minHeight: '520px',
-        }}>
+          minHeight: 520,
+        }}
+          className="hero-grid"
+        >
 
           {/* ── LEFT — Copy ── */}
           <div style={{ zIndex: 2 }}>
+            {/* ISO Badge */}
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                marginBottom: 20,
-                fontFamily: 'var(--font-ui)', fontSize: '0.72rem',
-                fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.15em',
-                color: 'var(--text-muted)',
-              }}
+              transition={{ duration: 0.5 }}
+              style={{ marginBottom: 14 }}
             >
-              <motion.span
-                animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--brand-green)', display: 'inline-block' }}
-              />
-              Clinical Insight. Human Language.
+              <IsoBadge />
+            </motion.div>
+
+            {/* Logo in Hero */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              style={{ marginBottom: 18 }}
+            >
+              <MedikathaLogo size={32} variant="auto" showWordmark={true} />
             </motion.div>
 
             {/* Headline */}
-            <h1 className="text-display" style={{ fontSize: 'clamp(2.2rem, 4vw, 3.4rem)', lineHeight: 1.1, marginBottom: 20 }}>
-              {['Making', 'Every'].map((word, i) => (
-                <motion.span key={word}
+            <h1 className="text-display" style={{
+              fontSize: 'clamp(2.1rem, 4vw, 3.4rem)',
+              lineHeight: 1.1, marginBottom: 18,
+            }}>
+              {['Where Clinical', 'Research Meets'].map((line, i) => (
+                <motion.span key={line}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 + i * 0.07, type: 'spring', stiffness: 90 }}
-                  style={{ display: 'inline-block', marginRight: '0.22em' }}
+                  transition={{ delay: 0.15 + i * 0.08, duration: 0.55 }}
+                  style={{ display: 'block' }}
                 >
-                  {word}
+                  {line}
                 </motion.span>
               ))}
-              <br />
               <RotatingWord />
-              <br />
-              {['Story', 'Easy', 'to', 'Trust'].map((word, i) => (
-                <motion.span key={word}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + i * 0.06, type: 'spring', stiffness: 90 }}
-                  style={{ display: 'inline-block', marginRight: '0.22em' }}
-                >
-                  {word}
-                </motion.span>
-              ))}
             </h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-muted)', maxWidth: 480, marginBottom: 28 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              style={{
+                fontSize: '1rem', lineHeight: 1.75,
+                color: 'var(--text-muted)', maxWidth: 480, marginBottom: 28,
+              }}
             >
-              Medikatha is a healthcare storytelling and strategy brand that turns clinical complexity into meaningful patient journeys, treatment clarity, and better adherence.
+              At Medikatha Clinical Research, we believe that every medicine has a story. We support clinical trials, site management, and professional education — from molecule to market.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.95 }}
-              style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}
+              transition={{ delay: 0.85, duration: 0.45 }}
+              style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}
             >
-              <Button to="/contact" variant="primary">Book a Strategy Call</Button>
-              <Button to="/stories" variant="ghost">Explore Stories →</Button>
+              <Link to="/services" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '12px 28px', borderRadius: 999,
+                background: 'var(--brand-blue)', color: '#fff',
+                fontFamily: 'var(--font-ui)', fontSize: '0.9rem', fontWeight: 600,
+                textDecoration: 'none',
+                boxShadow: '0 6px 20px rgba(15,108,207,0.32)',
+              }}>
+                Explore Our Services
+              </Link>
+              <Link to="/about" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '12px 24px', borderRadius: 999,
+                border: '1px solid var(--border-strong)',
+                color: 'var(--text-primary)',
+                fontFamily: 'var(--font-ui)', fontSize: '0.9rem', fontWeight: 500,
+                textDecoration: 'none',
+              }}>
+                About Us →
+              </Link>
             </motion.div>
 
-            {/* Trust row */}
+            {/* Trust pills */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-              style={{ marginTop: 28, display: 'flex', gap: 24, flexWrap: 'wrap' }}
+              transition={{ delay: 1.1, duration: 0.5 }}
+              style={{ marginTop: 24, display: 'flex', gap: 20, flexWrap: 'wrap' }}
             >
-              {['50+ Narratives', '15+ Therapy Areas', '3× Comprehension'].map(label => (
+              {['Clinical Research', 'Site Management', 'ISO Certified Training'].map(label => (
                 <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ color: 'var(--brand-green)', fontSize: '0.8rem' }}>✦</span>
-                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', fontWeight: 500, color: 'var(--text-muted)' }}>{label}</span>
+                  <span style={{ color: 'var(--brand-green)', fontSize: '0.75rem' }}>✦</span>
+                  <span style={{
+                    fontFamily: 'var(--font-ui)', fontSize: '0.74rem',
+                    fontWeight: 500, color: 'var(--text-muted)',
+                  }}>
+                    {label}
+                  </span>
                 </div>
               ))}
             </motion.div>
           </div>
 
-          {/* ── RIGHT — Brand Visual ── */}
-          <div
-            ref={visualRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+          {/* ── RIGHT — Animated Logo & Orbital Rings ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.25, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              perspective: 1000, height: 420,
+              position: 'relative',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+              height: 480,
             }}
           >
-            <motion.div style={{ y: yVisual }}>
-              <MedikathaVisual rotateX={rotateX} rotateY={rotateY} />
-            </motion.div>
-          </div>
+            {/* Ambient dynamic glow behind logo */}
+            <div style={{
+              position: 'absolute', width: 340, height: 340, borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(15,108,207,0.12) 0%, rgba(102,186,60,0.06) 50%, transparent 70%)',
+              filter: 'blur(40px)',
+              animation: 'pulseGlow 4s ease-in-out infinite alternate',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }} />
+            
+            {/* Orbital Rings - 'previous animations' style */}
+            <div style={{
+              position: 'absolute', width: 440, height: 440, borderRadius: '50%',
+              border: '1px dashed rgba(15,108,207,0.2)',
+              animation: 'spinSlow 30s linear infinite',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}>
+              <div style={{ position: 'absolute', top: -6, left: '50%', width: 12, height: 12, borderRadius: '50%', background: 'var(--brand-blue)' }} />
+            </div>
+            <div style={{
+              position: 'absolute', width: 320, height: 320, borderRadius: '50%',
+              border: '1px solid rgba(102,186,60,0.2)',
+              animation: 'spinSlowReverse 20s linear infinite',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}>
+              <div style={{ position: 'absolute', bottom: -5, right: '20%', width: 10, height: 10, borderRadius: '50%', background: 'var(--brand-green)' }} />
+            </div>
+
+            <style>{`
+              @keyframes pulseGlow { 
+                from { transform: scale(1); opacity: 0.7; } 
+                to { transform: scale(1.15); opacity: 1; } 
+              }
+              @keyframes spinSlow {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+              }
+              @keyframes spinSlowReverse {
+                from { transform: rotate(360deg); }
+                to { transform: rotate(0deg); }
+              }
+              @keyframes floatHeroLogo {
+                0%, 100% { transform: translateY(0px); filter: drop-shadow(0 15px 30px rgba(15,108,207,0.12)); }
+                50% { transform: translateY(-15px); filter: drop-shadow(0 25px 45px rgba(15,108,207,0.22)); }
+              }
+            `}</style>
+
+            <div style={{ 
+              position: 'relative', zIndex: 1, 
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              animation: 'floatHeroLogo 6s ease-in-out infinite',
+              willChange: 'transform, filter',
+            }}>
+              <motion.img
+                src="/images/logo-icon.png"
+                alt="Medikatha"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                style={{
+                  width: '100%',
+                  maxWidth: 420, // 'medium size proper'
+                  height: 'auto',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 12px 24px rgba(12,34,51,0.08))',
+                }}
+              />
+            </div>
+          </motion.div>
         </div>
       </motion.div>
 
-      {/* Responsive: stack on mobile */}
       <style>{`
-        @media (max-width: 760px) {
+        @keyframes heroImgZoom {
+          from { transform: scale(1.04); }
+          to   { transform: scale(1); }
+        }
+        @media (max-width: 768px) {
           .hero-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>

@@ -85,42 +85,115 @@ export function CoursesPage() {
         />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 20,
-              fontFamily: 'var(--font-ui)', fontSize: '0.8rem', fontWeight: 700,
-              textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--brand-blue)',
-              background: 'rgba(15,108,207,0.08)', padding: '6px 14px', borderRadius: '99px',
-              border: '1px solid rgba(15,108,207,0.2)'
-            }}
-          >
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px', alignItems: 'center' }}>
+            
+            {/* Left Content */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 20,
+                  fontFamily: 'var(--font-ui)', fontSize: '0.8rem', fontWeight: 700,
+                  textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--brand-blue)',
+                  background: 'rgba(15,108,207,0.08)', padding: '6px 14px', borderRadius: '99px',
+                  border: '1px solid rgba(15,108,207,0.2)'
+                }}
+              >
+                <motion.div
+                  animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 2, repeat: Infinity }}
+                  style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--brand-blue)' }}
+                />
+                Advance Your Career
+              </motion.div>
+
+              {/* ISO Certified Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.15, type: 'spring', stiffness: 120 }}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, marginLeft: 12,
+                  padding: '6px 16px 6px 10px',
+                  borderRadius: 999,
+                  background: 'rgba(102,186,60,0.1)',
+                  border: '1px solid rgba(102,186,60,0.3)',
+                }}
+              >
+                <div style={{
+                  width: 26, height: 26, borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #66ba3c, #48a020)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '0.7rem', fontWeight: 800, color: '#fff',
+                  fontFamily: 'var(--font-ui)',
+                }}>✓</div>
+                <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.8rem', fontWeight: 700, color: '#66ba3c', letterSpacing: '0.06em' }}>
+                  ISO Certified Training Institute
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.65 }}
+                className="text-display"
+                style={{ fontSize: 'clamp(2.8rem, 6vw, 4.5rem)', lineHeight: 1.05, marginBottom: 24, maxWidth: 800 }}
+              >
+                Master Clinical Research with Industry Experts
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                style={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'var(--text-muted)', maxWidth: 650 }}
+              >
+                Specialized, hands-on training programs designed to equip you with the deep knowledge and practical skills required to excel in today's fast-paced clinical research industry.
+              </motion.p>
+            </div>
+
+            {/* Right Content - ISO Image */}
             <motion.div
-              animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 2, repeat: Infinity }}
-              style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--brand-blue)' }}
-            />
-            Advance Your Career
-          </motion.div>
+              initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: 'flex', justifyContent: 'center' }}
+            >
+              <style>{`
+                .iso-sticker-wrapper {
+                  width: 280px;
+                  height: 280px;
+                  border-radius: 50%;
+                  background: #ffffff; /* pure white background */
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  overflow: hidden; /* crops into a perfect circle */
+                  filter: drop-shadow(0 15px 30px rgba(12,34,51,0.12));
+                  flex-shrink: 0;
+                }
+                [data-theme='dark'] .iso-sticker-wrapper {
+                  filter: drop-shadow(0 0 30px rgba(255,255,255,0.15));
+                }
+                
+                .iso-cert-img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain; /* ensures the entire logo fits perfectly inside the circle */
+                  mix-blend-mode: multiply; /* seamlessly merges the JPG's white bg with the wrapper's white bg */
+                  transform: scale(1.1); /* slight zoom to eliminate any extra padding from the JPG */
+                }
+              `}</style>
+              <div className="iso-sticker-wrapper">
+                <img 
+                  src="/images/ISO.jpg" 
+                  alt="ISO Certificate" 
+                  className="iso-cert-img"
+                />
+              </div>
+            </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.65 }}
-            className="text-display"
-            style={{ fontSize: 'clamp(2.8rem, 6vw, 4.5rem)', lineHeight: 1.05, marginBottom: 24, maxWidth: 800 }}
-          >
-            Master Clinical Research with Industry Experts
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            style={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'var(--text-muted)', maxWidth: 650 }}
-          >
-            Specialized, hands-on training programs designed to equip you with the deep knowledge and practical skills required to excel in today's fast-paced clinical research industry.
-          </motion.p>
+          </div>
         </div>
       </section>
 
