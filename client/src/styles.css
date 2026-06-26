@@ -210,3 +210,8 @@ input, textarea {
   font-family: var(--font-body);
   color: var(--text-primary);
 }
+
+/* Footer always dark */
+footer {
+  background-color: #070e17 !important;
+}

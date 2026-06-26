@@ -32,11 +32,13 @@ export function Footer() {
   return (
     <footer style={{
       background: '#070e17',
+      backgroundColor: '#070e17',
       color: 'rgba(255,255,255,0.55)',
       padding: 'var(--space-16) 0 var(--space-6)',
       marginTop: 'auto',
       position: 'relative',
       overflow: 'hidden',
+      zIndex: 1,
     }}>
       {/* Top glow */}
       <div style={{
