@@ -265,6 +265,8 @@ function ServiceCard({ service, index }: { service: typeof clinicalServices[0]; 
                   <img 
                     src="/images/smo-diagram.png" 
                     alt="SMO Process Diagram" 
+                    loading="lazy"
+                    decoding="async"
                     style={{ width: '100%', height: 'auto', display: 'block' }} 
                   />
                 </motion.div>

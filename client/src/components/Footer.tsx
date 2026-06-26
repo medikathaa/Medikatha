@@ -194,11 +194,11 @@ export function Footer() {
               }}>
                 {group}
               </h4>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {(links as any[]).map((link) => (
                   <li key={link.label}>
                     {'to' in link ? (
-                      <Link to={link.to} style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s' }}
+                      <Link to={link.to} style={{ display: 'inline-block', padding: '6px 0', fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s' }}
                         onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#fff'; }}
                         onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = ''; }}
                       >
@@ -208,7 +208,7 @@ export function Footer() {
                       <a href={link.href}
                         target={link.href?.startsWith('http') ? '_blank' : undefined}
                         rel={link.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s', wordBreak: 'break-word' }}
+                        style={{ display: 'inline-block', padding: '6px 0', fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s', wordBreak: 'break-word' }}
                         onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#fff'; }}
                         onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = ''; }}
                       >

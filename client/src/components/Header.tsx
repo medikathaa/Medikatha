@@ -208,9 +208,9 @@ export function Header() {
                   onClick={() => setMenuOpen(false)}
                   style={{
                     display: 'flex', alignItems: 'center', gap: 10,
-                    padding: '13px 20px',
+                    padding: '16px 20px',
                     fontFamily: 'var(--font-ui)',
-                    fontSize: '0.95rem', fontWeight: 500,
+                    fontSize: '1rem', fontWeight: 500,
                     color: location.pathname === item.to ? 'var(--brand-blue)' : 'var(--text-primary)',
                     borderBottom: i < navItems.length - 1 ? '1px solid var(--border)' : 'none',
                     textDecoration: 'none',
