@@ -11,8 +11,9 @@
       "file_name": "ribbon-monogram.svg",
       "relative_path": "logos/ribbon-monogram.svg",
       "mime_type": "image/svg+xml",
+      "data_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMzAwIiBmaWxsPSJub25lIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzEiIHgxPSIxMCIgeTE9IjYiIHgyPSIyMjAiIHkyPSIyODYiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzBENjFBNyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNTUiIHN0b3AtY29sb3I9IiMxNzM4N0EiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDgxRTU0Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cGF0aCBkPSJNMTggMTRoMTQwbDQ4IDQydjE1M2wtNjAgNThWMTI5TDE4IDE0WiIgZmlsbD0idXJsKCNnMSkiLz4KICA8cGF0aCBkPSJNMTggMTQgNzggNzB2MTc4bC02MC01NFYxNFoiIGZpbGw9IiMxRTRFOUQiIG9wYWNpdHk9Ii44MiIvPgogIDxwYXRoIGQ9Ik0xNDIgMTRoNTBsNDggNDJoLTUwbC00OC00MloiIGZpbGw9IiNEMTFCMjYiLz4KICA8cGF0aCBkPSJNMTQ4IDE3NHY5M2w1OC01OFYxMTZsLTU4IDU4WiIgZmlsbD0iIzFFNEU5RCIgb3BhY2l0eT0iLjkiLz4KICA8cGF0aCBkPSJNMzAgNDJoODh2MTZIMzB6TTExNiA0MmgxOHY4OGgtMTh6TTE0OCA0MmMyNiAwIDQyIDEwIDQyIDI5IDAgMTQtMTEgMjQtMjcgMjhsMjggNDBoLTI2bC0yNC0zNmgtMTJ2MzZoLTIwVjQyaDM5Wm0tMTkgMTZ2MzBoMThjMTQgMCAyNC00IDI0LTE1cy0xMC0xNS0yNC0xNWgtMThaIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPg==",
       "is_default": 1,
-      "created_at": "2026-04-09T09:44:38.320Z"
+      "created_at": "2026-06-27T14:20:13.206Z"
     },
     {
       "id": 2,
@@ -21,8 +22,9 @@
       "file_name": "blue-crest.svg",
       "relative_path": "logos/blue-crest.svg",
       "mime_type": "image/svg+xml",
+      "data_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIiBmaWxsPSJub25lIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzIiIHgxPSIyOCIgeTE9IjIyIiB4Mj0iMjA4IiB5Mj0iMjA0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwRTYzQUEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEEyMzRDIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cGF0aCBkPSJNMTIwIDE2IDIwNCA1MHY2MmMwIDU1LTM0IDk1LTg0IDExMi01MC0xNy04NC01Ny04NC0xMTJWNTBsODQtMzRaIiBmaWxsPSJ1cmwoI2cyKSIvPgogIDxwYXRoIGQ9Ik04NCA3MGg3MnYxNkg4NHpNODQgMTAwaDcydjE2SDg0ek04NCAxMzBoNzJ2MTZIODR6IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuOTIiLz4KICA8Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNzIiIHI9IjE4IiBmaWxsPSIjRTMzQzMyIi8+Cjwvc3ZnPg==",
       "is_default": 1,
-      "created_at": "2026-04-09T09:44:38.322Z"
+      "created_at": "2026-06-27T14:20:13.208Z"
     },
     {
       "id": 3,
@@ -31,8 +33,9 @@
       "file_name": "geo-spark.svg",
       "relative_path": "logos/geo-spark.svg",
       "mime_type": "image/svg+xml",
+      "data_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIiBmaWxsPSJub25lIj4KICA8cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgcng9IjQyIiBmaWxsPSIjRjFGNkZCIi8+CiAgPHJlY3QgeD0iMjgiIHk9IjI4IiB3aWR0aD0iODQiIGhlaWdodD0iODQiIHJ4PSIxOCIgZmlsbD0iIzBENjFBNyIvPgogIDxyZWN0IHg9IjEyOCIgeT0iMjgiIHdpZHRoPSI4NCIgaGVpZ2h0PSI4NCIgcng9IjE4IiBmaWxsPSIjMTgzNjc5Ii8+CiAgPHJlY3QgeD0iMjgiIHk9IjEyOCIgd2lkdGg9Ijg0IiBoZWlnaHQ9Ijg0IiByeD0iMTgiIGZpbGw9IiNERjNBMzQiLz4KICA8cmVjdCB4PSIxMjgiIHk9IjEyOCIgd2lkdGg9Ijg0IiBoZWlnaHQ9Ijg0IiByeD0iMTgiIGZpbGw9IiMxMDI4NEMiLz4KICA8cGF0aCBkPSJNNTUgNjZoMjlsMjkgMzFIODRsLTI5LTMxWm04MCAxMDAgMjktMzFoMjlsLTI5IDMxaC0yOVoiIGZpbGw9IiNmZmYiLz4KPC9zdmc+",
       "is_default": 1,
-      "created_at": "2026-04-09T09:44:38.325Z"
+      "created_at": "2026-06-27T14:20:13.210Z"
     },
     {
       "id": 4,
@@ -41,8 +44,9 @@
       "file_name": "executive-signature.svg",
       "relative_path": "signatures/executive-signature.svg",
       "mime_type": "image/svg+xml",
+      "data_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgMTIwIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMTkgODhjMTgtNDQgMTUtNzAgMjgtNzAgMTQgMC04IDc1IDEwIDc0IDE1LTEgMjctMzUgMzgtNTkgMi01IDUgMCAzIDctMTAgMzQtMiA1NSAxMSA1NSAxNSAwIDE3LTU3IDM0LTU3IDEwIDAgOSAxNSAzIDI1IDE0LTI1IDI4LTMxIDM2LTIzIDEwIDEwLTYgNDUgNSA0NSAxNCAwIDIzLTQwIDMwLTYzIDItNiA1LTIgNCA1LTQgMjgtOCA2MiA1IDYyIDE0IDAgMjEtMTYgMzYtNDAiIHN0cm9rZT0iIzExMjQzQSIgc3Ryb2tlLXdpZHRoPSI0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0xNTYgMzBjOSAwIDE2IDcgMTYgMTZzLTcgMTYtMTYgMTYiIHN0cm9rZT0iIzExMjQzQSIgc3Ryb2tlLXdpZHRoPSI0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=",
       "is_default": 1,
-      "created_at": "2026-04-09T09:44:38.326Z"
+      "created_at": "2026-06-27T14:20:13.213Z"
     }
   ],
   "certificates": []

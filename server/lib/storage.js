@@ -62,6 +62,7 @@ export function storeAssetFile({ kind, name, dataUrl }) {
     mimeType,
     fileName,
     relativePath,
+    dataUrl,
   };
 }
 
@@ -70,9 +71,13 @@ export function writeSeedSvg({ kind, fileName, content }) {
   const absolutePath = path.join(directory, fileName);
   const relativePath = `${kind === 'signature' ? 'signatures' : 'logos'}/${fileName}`;
   writeFileSync(absolutePath, content, 'utf8');
+  
+  const dataUrl = `data:image/svg+xml;base64,${Buffer.from(content, 'utf8').toString('base64')}`;
+  
   return {
     mimeType: 'image/svg+xml',
     fileName,
     relativePath,
+    dataUrl,
   };
 }

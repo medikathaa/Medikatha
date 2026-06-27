@@ -41,6 +41,7 @@ async function ensureDefaultAssets() {
       fileName: stored.fileName,
       relativePath: stored.relativePath,
       mimeType: stored.mimeType,
+      dataUrl: stored.dataUrl,
       isDefault: 1,
     });
   }
@@ -55,6 +56,12 @@ function certificateBaseUrl(request) {
 }
 
 function toAssetResponse(asset) {
+  if (asset.data_url) {
+    return {
+      ...asset,
+      url: asset.data_url,
+    };
+  }
   return {
     ...asset,
     url: `/media/${asset.relative_path.replace(/\\/g, '/')}`,
@@ -145,6 +152,7 @@ app.post('/api/assets', async (request, response) => {
       fileName: stored.fileName,
       relativePath: stored.relativePath,
       mimeType: stored.mimeType,
+      dataUrl: stored.dataUrl,
       isDefault: 0,
     });
 

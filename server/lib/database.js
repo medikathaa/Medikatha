@@ -86,6 +86,7 @@ async function initializePostgres() {
       file_name TEXT NOT NULL,
       relative_path TEXT NOT NULL,
       mime_type TEXT NOT NULL,
+      data_url TEXT,
       is_default INTEGER NOT NULL DEFAULT 0,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
@@ -135,16 +136,17 @@ export async function createAsset({
   fileName,
   relativePath,
   mimeType,
+  dataUrl,
   isDefault = 0,
 }) {
   if (activeDriver === 'postgres') {
     const result = await postgresPool.query(
       `
-        INSERT INTO assets (kind, name, file_name, relative_path, mime_type, is_default)
-        VALUES ($1, $2, $3, $4, $5, $6)
+        INSERT INTO assets (kind, name, file_name, relative_path, mime_type, data_url, is_default)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING *
       `,
-      [kind, name, fileName, relativePath, mimeType, isDefault],
+      [kind, name, fileName, relativePath, mimeType, dataUrl, isDefault],
     );
     return normalizeAssetRow(result.rows[0]);
   }
@@ -159,6 +161,7 @@ export async function createAsset({
     file_name: fileName,
     relative_path: relativePath,
     mime_type: mimeType,
+    data_url: dataUrl,
     is_default: isDefault,
     created_at: now(),
   };
