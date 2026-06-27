@@ -128,7 +128,7 @@ export function Header() {
             </motion.button>
 
             {/* CTA */}
-            <motion.div whileHover={{ scale: 1.04, y: -1 }} whileTap={{ scale: 0.97 }}>
+            <motion.div className="hdr-cta" whileHover={{ scale: 1.04, y: -1 }} whileTap={{ scale: 0.97 }}>
               <Link
                 to="/contact"
                 style={{
@@ -232,6 +232,9 @@ export function Header() {
         @media (max-width: 860px) {
           .hdr-desktop-nav { display: none !important; }
           .hdr-hamburger { display: block !important; }
+        }
+        @media (max-width: 580px) {
+          .hdr-cta { display: none !important; }
         }
       `}</style>
     </>
