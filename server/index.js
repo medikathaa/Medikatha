@@ -233,8 +233,12 @@ app.get(/.*/, (_request, response) => {
 await initializeDatabase();
 await ensureDefaultAssets();
 
-app.listen(port, () => {
-  console.log(
-    `Medikatha web server running on http://localhost:${port} using ${getDatabaseDriver()} storage`,
-  );
-});
+if (!process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(
+      `Medikatha web server running on http://localhost:${port} using ${getDatabaseDriver()} storage`,
+    );
+  });
+}
+
+export default app;
