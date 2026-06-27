@@ -7,7 +7,7 @@ const contactInfo = [
   { icon: '✉', label: 'Primary Email', value: 'medikathacr@gmail.com', href: 'mailto:medikathacr@gmail.com', color: '#0f6ccf' },
   { icon: '✉', label: 'Secondary Email', value: 'nikita.medikatha@gmail.com', href: 'mailto:nikita.medikatha@gmail.com', color: '#66ba3c' },
   { icon: '☎', label: 'Phone', value: '+91 7767809945', href: 'tel:+917767809945', color: '#9b59b6' },
-  { icon: '◷', label: 'Office Hours', value: 'Mon–Sat, 9:30 AM – 7:00 PM IST', href: undefined, color: '#e03a3a' },
+  { icon: '◷', label: 'Office Hours', value: 'Mon–Sat, 9:30 AM – 6:00 PM IST', href: undefined, color: '#e03a3a' },
 ];
 
 const socialLinks = [
